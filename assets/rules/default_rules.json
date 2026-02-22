@@ -1,0 +1,104 @@
+[
+  {
+    "id": "default_video",
+    "name": "通用视频解析",
+    "host": "*",
+    "description": "解析常见的视频链接格式",
+    "rules": [
+      {
+        "name": "video_src",
+        "xpath": "//video/@src"
+      },
+      {
+        "name": "source_mp4",
+        "xpath": "//source[@type='video/mp4']/@src"
+      },
+      {
+        "name": "m3u8_in_script",
+        "xpath": "//script[contains(text(),'.m3u8')]",
+        "regex": "[\"']([^\"']+\\.m3u8[^\"']*)[\"']"
+      },
+      {
+        "name": "mp4_in_script",
+        "xpath": "//script[contains(text(),'.mp4')]",
+        "regex": "[\"']([^\"']+\\.(?:mp4|m4s)[^\"']*)[\"']"
+      }
+    ],
+    "isEnabled": true,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "bilibili",
+    "name": "Bilibili解析",
+    "host": "bilibili.com|b23.tv",
+    "description": "解析Bilibili视频（支持移动端与短链）",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "Referer": "https://www.bilibili.com"
+    },
+    "rules": [
+      {
+        "name": "playinfo_url",
+        "xpath": "//script",
+        "regex": "\"(?:url|baseUrl|base_url)\":\"([^\"]+)\""
+      }
+    ],
+    "isEnabled": true,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "novipnoad",
+    "name": "NovipNoAd解析",
+    "host": "novipnoad.cc",
+    "description": "影视站通用脚本解析（video/source/iframe/player）",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+      "Referer": "https://www.novipnoad.cc"
+    },
+    "rules": [
+      {
+        "name": "video_src",
+        "xpath": "//video/@src"
+      },
+      {
+        "name": "source_src",
+        "xpath": "//source/@src"
+      },
+      {
+        "name": "iframe_src",
+        "xpath": "//iframe/@src"
+      },
+      {
+        "name": "player_json_url",
+        "xpath": "//script",
+        "regex": "\"url\"\\s*:\\s*\"([^\"]+)\""
+      },
+      {
+        "name": "direct_media",
+        "xpath": "//script",
+        "regex": "(https?:\\/\\/[^\"'\\s]+(?:\\.m3u8|\\.mp4|\\.m4s)[^\"'\\s]*)"
+      }
+    ],
+    "isEnabled": true,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "hisense_tv",
+    "name": "海信电视优化",
+    "host": "*",
+    "description": "针对海信电视的优化规则",
+    "rules": [
+      {
+        "name": "direct_video",
+        "xpath": "//video/@src"
+      },
+      {
+        "name": "hls_stream",
+        "xpath": "//script[contains(text(),'m3u8')]",
+        "regex": "(https?://[^\"'\\s]+\\.m3u8[^\"'\\s]*)"
+      }
+    ],
+    "isEnabled": true,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]
