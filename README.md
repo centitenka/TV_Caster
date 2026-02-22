@@ -1,6 +1,6 @@
-# 海信投屏 - Hisense Caster
+# TV投屏 - TV Caster
 
-一款基于Flutter开发的安卓应用，支持通过DLNA协议将视频投屏到同局域网下的海信电视。
+一款基于Flutter开发的安卓应用，支持通过DLNA协议将视频投屏到同局域网下的电视。
 
 ## 功能特性
 
